@@ -48,7 +48,7 @@ public class RemoteClient {
             hasAdminPermission = reference.administrativeMethod();
         } catch (EJBAccessException e) {
         }
-        System.out.println("\nPrincipal has admin permission: " + hasAdminPermission);
+        System.out.println("\nPrincipal has user role: " + hasAdminPermission);
         System.out.println("\n\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n\n\n");
     }
 

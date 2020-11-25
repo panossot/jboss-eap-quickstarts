@@ -22,11 +22,13 @@
         </authentication-rules>
         <authentication-configurations>
             <configuration name="default-config">
-                <set-user-name name="quickstartUser"/>
                 <credentials>
-                    <clear-password password="quickstartPwd1!"/>
+                    <oauth2-bearer-token token-endpoint-uri="http://localhost:8180/auth/realms/master/protocol/openid-connect/token">
+                        <client-credentials client-id="eap" client-secret="ef8853b6-ad73-4e82-9ca4-a9c236f396d9"/>
+                        <resource-owner-credentials name="testuser" password="secretPass" />
+                    </oauth2-bearer-token>
                 </credentials>
-                <sasl-mechanism-selector selector="DIGEST-MD5"/>
+                <sasl-mechanism-selector selector="OAUTHBEARER"/>
                 <providers>
                     <use-service-loader />
                 </providers>

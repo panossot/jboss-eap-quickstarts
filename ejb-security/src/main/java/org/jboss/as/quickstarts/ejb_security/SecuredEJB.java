@@ -19,6 +19,7 @@ package org.jboss.as.quickstarts.ejb_security;
 import java.security.Principal;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Remote;
 import javax.ejb.SessionContext;
@@ -40,8 +41,8 @@ import org.jboss.ejb3.annotation.SecurityDomain;
  */
 @Stateless
 @Remote(SecuredEJBRemote.class)
-@RolesAllowed({ "guest" })
-@SecurityDomain("other")
+@PermitAll
+@SecurityDomain("jwt-ejb-auth")
 public class SecuredEJB implements SecuredEJBRemote {
 
     // Inject the Session Context
@@ -57,7 +58,7 @@ public class SecuredEJB implements SecuredEJBRemote {
         return principal.toString();
     }
 
-    @RolesAllowed("admin")
+    @RolesAllowed("user")
     public boolean administrativeMethod() {
         return true;
     }

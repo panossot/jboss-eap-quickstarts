@@ -55,3 +55,19 @@ CONFIGURE EAP:
 
 reload
 
+
+
+EJB CONFIG:
+===========
+/subsystem=ejb3/application-security-domain=jwt-ejb-auth:add(security-domain=jwt-domain)
+
+/subsystem=remoting/http-connector=http-remoting-connector:write-attribute(name=sasl-authentication-factory,value=application-sasl-authentication)
+
+/subsystem=elytron/sasl-authentication-factory=application-sasl-authentication:write-attribute(name=security-domain,value="jwt-domain")
+
+/subsystem=elytron/sasl-authentication-factory=application-sasl-authentication:undefine-attribute(name=mechanism-configurations)
+
+/subsystem=elytron/sasl-authentication-factory=application-sasl-authentication:write-attribute(name=mechanism-configurations, value=[{mechanism-name=OAUTHBEARER,mechanism-realm-configurations=[{realm-name=jwt-realm}]}])
+
+reload
+
