@@ -24,7 +24,7 @@ CLients -> Create
         + Add to ID token = false
         + Add to userinfo = false
 
-CREATE THE KEYSTORE:
+CREATE THE KEYSTORE (we shouldn't need a keystore with introspection, so feel free to ignore this):
 ====================
 Realm Settings -> Keys -> click "certificate" on the RSA type
 - copy the value and create a file rhsso.pem looking like this:
