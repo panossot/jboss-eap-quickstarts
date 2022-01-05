@@ -1,0 +1,17 @@
+build:
+  uri: https://github.com/panossot/jboss-eap-quickstarts.git
+  ref: 7.4.x
+  pullSecret: eap-pull-secret
+  s2i:
+    jdk: "11"
+    galleonLayers:
+      - jaxrs-server
+  env:
+  - name: ARTIFACT_DIR
+    value: helloworld-rs/target
+  - name: MAVEN_ARGS_APPEND
+    value: -am -pl helloworld-rs
+  - name: MAVEN_OPTS
+    value: '-XX:MetaspaceSize=96m -XX:MaxMetaspaceSize=256m'
+deploy:
+  replicas: 3
